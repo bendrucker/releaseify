@@ -18,7 +18,7 @@ function gitRelease (options, callback) {
   }
 
   function tag (callback) {
-    child.execFile('git', ['describe'], options, trim(callback))
+    child.execFile('git', ['describe', '--abbrev=0'], options, trim(callback))
   }
 }
 
