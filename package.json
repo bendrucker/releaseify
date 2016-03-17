@@ -1,0 +1,38 @@
+{
+  "name": "releaseify",
+  "main": "index.js",
+  "browser": "browser.js",
+  "version": "0.0.0",
+  "description": "Get a project's current git commit/tag via Node and Browserify",
+  "license": "MIT",
+  "repository": "bendrucker/releaseify",
+  "author": {
+    "name": "Ben Drucker",
+    "email": "bvdrucker@gmail.com",
+    "url": "bendrucker.me"
+  },
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "keywords": [
+    "git",
+    "tag",
+    "commit",
+    "sha",
+    "release",
+    "node",
+    "browserify"
+  ],
+  "devDependencies": {
+    "tape": "^4.0.0",
+    "standard": "^6.0.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "next-tick": "~0.2.2",
+    "run-parallel": "~1.1.5",
+    "xtend": "~4.0.1"
+  }
+}
