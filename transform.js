@@ -7,6 +7,7 @@ var release = require('./')
 module.exports = transform
 
 function transform (file, options) {
+  if (/\.json$/.test(file)) return new PassThrough()
   options = options || {}
 
   var staticModule = Static({
