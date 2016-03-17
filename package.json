@@ -24,11 +24,14 @@
     "browserify"
   ],
   "devDependencies": {
-    "tape": "^4.0.0",
-    "standard": "^6.0.0"
+    "browserify": "^13.0.0",
+    "standard": "^6.0.0",
+    "tape": "^4.0.0"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "browser.js",
+    "transform.js"
   ],
   "dependencies": {
     "next-tick": "~0.2.2",

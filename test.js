@@ -3,15 +3,19 @@
 const test = require('tape')
 const child = require('child_process')
 const path = require('path')
+const browserify = require('browserify')
+const vm = require('vm')
 const release = require('./')
+
+const cwd = path.resolve(__dirname, 'tmp')
 
 test('setup', function (t) {
   child.execSync('mkdir tmp')
+  child.execSync('cp ./fixture.js ./tmp/fixture.js')
   run([
     'git init',
-    'echo "hi" > empty',
-    'git add empty',
-    'git commit -m "msg"',
+    'git add fixture.js',
+    'git commit -m "add module"',
     'git tag -am v1.0.0 v1.0.0'
   ])
   t.end()
@@ -20,14 +24,35 @@ test('setup', function (t) {
 test(function (t) {
   t.plan(3)
 
-  const cwd = path.resolve(__dirname, 'tmp')
-
   release({cwd}, function (err, release) {
     if (err) return t.end(err)
     t.ok(release)
     t.equal(release.commit.length, 7, 'has short sha')
     t.equal(release.tag, 'v1.0.0', 'has tag')
   })
+})
+
+test('browserify', function (t) {
+  t.plan(3)
+
+  browserify()
+    .require('./tmp/fixture', {expose: 'fixture'})
+    .transform(path.resolve(__dirname, 'transform.js'), {cwd})
+    .bundle(function (err, buffer) {
+      if (err) return t.end(err)
+      const code = buffer.toString()
+      const context = {
+        setTimeout,
+        clearTimeout
+      }
+
+      vm.runInNewContext(code, context)('fixture')(function (err, release) {
+        if (err) return t.end(err)
+        t.ok(release)
+        t.equal(release.commit.length, 7, 'has short sha')
+        t.equal(release.tag, 'v1.0.0', 'has tag')
+      })
+    })
 })
 
 test('teardown', function (t) {
