@@ -15,7 +15,7 @@ $ npm install --save releaseify
 ```js
 var release = require('releaseify')
 
-release(function (err, release) {
+release(function (err, version) {
   //=> null, {commit, tag}  
 })
 ```
