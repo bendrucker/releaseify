@@ -15,7 +15,7 @@ $ npm install --save releaseify
 ```js
 var release = require('releaseify')
 
-release(function (err, release) {
+release(function (err, data) {
   //=> null, {commit, tag}  
 })
 ```
@@ -25,6 +25,26 @@ $ browserify entry.js -t releasify/transform
 ```
 
 In Node, the git data will be read at run time. When the transform is applied via Browserify, the data is statically inserted into the bundle.
+
+The Browserify transform works by statically analyzing your code and transforming releasify calls with inline shims. Static analysis is fragile and you'll want to write your code so that static analysis can detect your function calls.
+
+:white_check_mark: **Good**
+
+```js
+var releaseify = require('releaseify')
+
+releasify(function (err, data) {
+  // => ...  
+})
+```
+
+:x: **Bad**
+
+```js
+var releaseify = require('releaseify')
+
+releaseify.bind(null).call(console.log.bind(console))
+```
 
 ## API
 
