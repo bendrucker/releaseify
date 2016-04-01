@@ -2,7 +2,7 @@
   "name": "releaseify",
   "main": "index.js",
   "browser": "browser.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get a project's current git commit/tag via Node and Browserify",
   "license": "MIT",
   "repository": "bendrucker/releaseify",
