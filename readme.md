@@ -1,4 +1,4 @@
-# releaseify [![Build Status](https://travis-ci.org/bendrucker/releaseify.svg?branch=master)](https://travis-ci.org/bendrucker/releaseify)
+# releaseify [![Build Status](https://travis-ci.org/bendrucker/releaseify.svg?branch=master)](https://travis-ci.org/bendrucker/releaseify) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/releaseify.svg)](https://greenkeeper.io/)
 
 > Get a project's current git commit/tag via Node and Browserify
 
